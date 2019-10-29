@@ -13,5 +13,5 @@ int main(int argc, char * argv[]) {
     exit(-1);
   }
 
-  ptr = get_name();
+  strptr = get_name(argv[1]);
 }
