@@ -7,10 +7,11 @@ It will return a pointer to an array of struct name_basics.*/
 struct name_basics* get_name (char* path) {
   /*Declating my variables*/
   struct name_basics * strptr;
-  char myPath [100];
+  static char myPath [100];
   char buffer[MAX_LENGTH];
   char * ptr;
   FILE * fp;
+
 
   /*The full-path name*/
   strcat(myPath,path);
@@ -19,6 +20,9 @@ struct name_basics* get_name (char* path) {
   ptr = myPath;/*point to my string*/
 
   fp = fopen(ptr,"r");
+  if (fp == NULL){
+    fprintf(stderr,"File doesn't exist\n");
+  }
 
   /*Then, inside a while loop, I will fgets into a buffer
   string of length 256.  I will check the return value of
