@@ -48,7 +48,7 @@ struct name_basics* get_name (char* path) {
     }
 
   }
-  /*printf("lines = %d\n",numOfLines);Printing out the buffer*/
+  printf("lines = %d\n",numOfLines);/*Printing out the buffer*/
 
 
   /*malloc my array*/

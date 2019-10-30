@@ -65,20 +65,18 @@ struct title_principals* get_principals (char* path){
     }
 
     strptr = get_column(buffer,3);
-
-    /*This part needs fix!*/
     if (strstr(strptr,"actor")|| strstr(strptr,"actress")) {
-      //bufferChar = strdup(get_column(buffer,5));
+      bufferChar = strdup(get_column(buffer,5));
       bufferConst = strdup(get_column(buffer,2));
       bufferTConst = strdup(get_column(buffer,0));
       structptr[index++].nconst = strdup(bufferConst);
       structptr[anotherIndex++].tconst = strdup(bufferTConst);
-      //structptr[count++].characters = strdup(bufferChar);*/
+      structptr[count++].characters = strdup(bufferChar);
     }
 
   }
 
 
   fclose(fp);
-  return NULL;
+  return structptr;
 }

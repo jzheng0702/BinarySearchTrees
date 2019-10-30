@@ -10,14 +10,14 @@ int main(int argc, char * argv[]) {
   struct name_basics * strptr;
   struct title_basics * titleptr;
   struct title_principals * title_principals;
-  int i;
+  /*int i*/
   if (argc < 2) {
     fprintf(stderr, "Usage:  %s directory\n", argv[0] );
     exit(-1);
   }
 
-  //strptr = get_name(argv[1]);
-  //titleptr = get_title(argv[1]);
+  strptr = get_name(argv[1]);
+  titleptr = get_title(argv[1]);
   title_principals = get_principals(argv[1]);
 
 
@@ -43,11 +43,11 @@ int main(int argc, char * argv[]) {
 
   /*Testing for principals
   for (i=0;i<10;i++) {
-    printf( "%s %s %s\n", title_principals[i].tconst,title_principals[i].nconst,title_principals[i].characters );
+    printf( "%s %s %s", title_principals[i].tconst,title_principals[i].nconst,title_principals[i].characters );
   }
   printf( "\n" );
 
   for (i=14676207;i<14676217;i++){
-    printf( "%s %s %s\n", title_principals[i].tconst,title_principals[i].nconst,title_principals[i].characters );
+    printf( "%s %s %s", title_principals[i].tconst,title_principals[i].nconst,title_principals[i].characters );
   }*/
 }
