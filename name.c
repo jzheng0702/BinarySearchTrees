@@ -15,6 +15,7 @@ struct name_basics* get_name (char* path) {
   char bufferWord[100];
   char * ptr;
   FILE * fp;
+  int count = 0,index = 0;
   int numOfLines = 0;
 
 
@@ -76,15 +77,15 @@ struct name_basics* get_name (char* path) {
     if (strstr(strptr,"actor") != NULL) {
       bufferName = get_column(buffer,4);
       bufferConst = get_column(buffer,0);
-      printf("[%s]-[%s]\n",bufferConst,bufferName);
-      structptr -> nconst = strdup(bufferConst);
-      structptr -> primaryName = strdup(bufferName);
+      /*printf("[%s]-[%s]\n",bufferConst,bufferName);*/
+      structptr[index++].nconst = strdup(bufferConst);
+      structptr[count++].primaryName = strdup(bufferName);
     } else if (strstr(strptr,"actress") != NULL) {
       bufferName = get_column(buffer,4);
       bufferConst = get_column(buffer,0);
-      printf("[%s]-[%s]\n",bufferConst,bufferName);
-      structptr -> nconst = strdup(bufferConst);
-      structptr -> primaryName = strdup(bufferName);
+      /*printf("[%s]-[%s]\n",bufferConst,bufferName);*/
+      structptr[index++].nconst = strdup(bufferConst);
+      structptr[count++].primaryName = strdup(bufferName);
     }
 
     free(strptr);
