@@ -1,16 +1,19 @@
 #include "name.h"
+#include "common.h"
 
 /*The get_name function will take a string as an argument
 that is the directory path to the files.
 It will return a pointer to an array of struct name_basics.*/
-
 struct name_basics* get_name (char* path) {
   /*Declating my variables*/
-  struct name_basics * strptr;
-  static char myPath [100];
+  struct name_basics * structptr;
+  static char myPath[100];
+  char *strptr = NULL;
   char buffer[MAX_LENGTH];
+  char bufferWord[100];
   char * ptr;
   FILE * fp;
+  int numOfLines = 0;
 
 
   /*The full-path name*/
@@ -32,16 +35,25 @@ struct name_basics* get_name (char* path) {
       break;
     }
 
-    if(strlen(buffer) == MAX_LENGTH - 1){ /*检查buffer会不会太长，比设置的buffer_size要长*/
+    if(strlen(buffer) == MAX_LENGTH - 1){
       fprintf(stderr,"Error: BUFFER TOO SMALL\n");
       exit(-1);
     }
 
-    printf("%s",buffer);/*Printing out the buffer*/
+    strptr = get_column(buffer,4);
+    if (strstr(strptr,"actor") != NULL) {
+      strcpy(bufferWord,"actor");
+      numOfLines++;
+      /*printf("[%s]\n",bufferWord);*/
+    } else if (strstr(strptr,"actress") != NULL) {
+      strcpy(bufferWord,"actress");
+      numOfLines++;
+    }
+    free(strptr);
 
   }
+  printf("lines = %d\n",numOfLines);/*Printing out the buffer*/
   fclose(fp);
-  free(ptr);
 
   return NULL;
 }
