@@ -10,6 +10,8 @@ struct name_basics* get_name (char* path) {
   static char myPath[100];
   char *strptr = NULL;
   char buffer[MAX_LENGTH];
+  char *bufferConst = NULL;
+  char *bufferName = NULL;
   char bufferWord[100];
   char * ptr;
   FILE * fp;
@@ -53,7 +55,44 @@ struct name_basics* get_name (char* path) {
 
   }
   printf("lines = %d\n",numOfLines);/*Printing out the buffer*/
-  fclose(fp);
 
-  return NULL;
+
+  /*malloc my array*/
+  structptr = malloc(sizeof(struct name_basics) * numOfLines);
+  fseek(fp,0,SEEK_SET);
+  while(!feof(fp)){
+    if (fgets(buffer,MAX_LENGTH,fp) == NULL){
+      break;
+    }
+
+    if(strlen(buffer) == MAX_LENGTH - 1){
+      fprintf(stderr,"Error: BUFFER TOO SMALL\n");
+      exit(-1);
+    }
+
+    strptr = get_column(buffer,4);
+    bufferName = malloc(4);
+    bufferConst = malloc(4);
+    if (strstr(strptr,"actor") != NULL) {
+      bufferName = get_column(buffer,4);
+      bufferConst = get_column(buffer,0);
+      printf("[%s]-[%s]\n",bufferConst,bufferName);
+      structptr -> nconst = strdup(bufferConst);
+      structptr -> primaryName = strdup(bufferName);
+    } else if (strstr(strptr,"actress") != NULL) {
+      bufferName = get_column(buffer,4);
+      bufferConst = get_column(buffer,0);
+      printf("[%s]-[%s]\n",bufferConst,bufferName);
+      structptr -> nconst = strdup(bufferConst);
+      structptr -> primaryName = strdup(bufferName);
+    }
+
+    free(strptr);
+    free(bufferName);
+    free(bufferConst);
+  }
+
+
+  fclose(fp);
+  return structptr;
 }

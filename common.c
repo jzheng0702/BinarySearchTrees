@@ -24,7 +24,12 @@ char* get_column(char* line, int columnNum) {
 
   }
 
-  strncpy(buffer,line+start+1,end - start);
+  if(line[start] == '\t' || line[start] == ' ') {
+    strncpy(buffer,line+start+1,end - start);
+  } else {
+    strncpy(buffer,line+start,end - start);
+  }
+
   buffer[end - start] = '\0';
   columnContents = malloc(end - start + 1);
   strcpy(columnContents,buffer);
