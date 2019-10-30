@@ -8,11 +8,10 @@ struct name_basics* get_name (char* path) {
   /*Declating my variables*/
   struct name_basics * structptr;
   static char myPath[100];
-  char *strptr = NULL;
+  char *strptr;
   char buffer[MAX_LENGTH];
-  char *bufferConst = NULL;
-  char *bufferName = NULL;
-  char bufferWord[100];
+  char *bufferConst;
+  char *bufferName;
   char * ptr;
   FILE * fp;
   int count = 0,index = 0;
@@ -44,18 +43,12 @@ struct name_basics* get_name (char* path) {
     }
 
     strptr = get_column(buffer,4);
-    if (strstr(strptr,"actor") != NULL) {
-      strcpy(bufferWord,"actor");
-      numOfLines++;
-      /*printf("[%s]\n",bufferWord);*/
-    } else if (strstr(strptr,"actress") != NULL) {
-      strcpy(bufferWord,"actress");
+    if (strstr(strptr,"actor") || strstr(strptr,"actress")) {
       numOfLines++;
     }
-    free(strptr);
 
   }
-  printf("lines = %d\n",numOfLines);/*Printing out the buffer*/
+  /*printf("lines = %d\n",numOfLines);Printing out the buffer*/
 
 
   /*malloc my array*/
@@ -72,25 +65,13 @@ struct name_basics* get_name (char* path) {
     }
 
     strptr = get_column(buffer,4);
-    bufferName = malloc(4);
-    bufferConst = malloc(4);
-    if (strstr(strptr,"actor") != NULL) {
-      bufferName = get_column(buffer,4);
-      bufferConst = get_column(buffer,0);
-      /*printf("[%s]-[%s]\n",bufferConst,bufferName);*/
-      structptr[index++].nconst = strdup(bufferConst);
-      structptr[count++].primaryName = strdup(bufferName);
-    } else if (strstr(strptr,"actress") != NULL) {
+    if (strstr(strptr,"actor") || strstr(strptr,"actress")) {
       bufferName = get_column(buffer,4);
       bufferConst = get_column(buffer,0);
       /*printf("[%s]-[%s]\n",bufferConst,bufferName);*/
       structptr[index++].nconst = strdup(bufferConst);
       structptr[count++].primaryName = strdup(bufferName);
     }
-
-    free(strptr);
-    free(bufferName);
-    free(bufferConst);
   }
 
 
