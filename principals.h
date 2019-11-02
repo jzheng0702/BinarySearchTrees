@@ -12,9 +12,9 @@ struct title_principals {
 struct array_principals {
   int num_of_items;
   struct title_principals* structptr;
-  int index;
-  int count;
-  int index2;
+  struct tree* root_one;
+  struct tree* root_two;
+  struct tree* root_three;
 };
 
 struct array_principals* get_principals (char* path);

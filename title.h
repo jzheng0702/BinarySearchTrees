@@ -3,12 +3,13 @@
 
 
 #include "common.h"
+#include "binary.h"
 
 struct array_title {
   int num_of_items;
   struct title_basics* structptr;
-  int index;
-  int count;
+  struct tree* root_one;
+  struct tree* root_two;
 };
 
 struct title_basics {

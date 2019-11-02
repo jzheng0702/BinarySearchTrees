@@ -7,13 +7,10 @@
 #include <stdlib.h>
 
 int main(int argc, char * argv[]) {
-  //struct name_basics * strptr;
-  //struct title_basics * titleptr;
-  //struct title_principals * title_principals;
   struct array_name * strptr;
   struct array_title * titleptr;
   struct array_principals * title_principals;
-  int i;
+  /*int i;*/
   if (argc < 2) {
     fprintf(stderr, "Usage:  %s directory\n", argv[0] );
     exit(-1);
@@ -34,6 +31,7 @@ int main(int argc, char * argv[]) {
   }*/
 
   /*Testing for title*/
+  /*
   for (i=0;i<10;i++){
     printf( "%s %s\n", titleptr -> structptr[i].tconst, titleptr -> structptr[i].primaryTitle);
   }
@@ -41,7 +39,7 @@ int main(int argc, char * argv[]) {
 
   for (i=525313;i<525323;i++) {
     printf( "%s %s\n",titleptr -> structptr[i].tconst, titleptr -> structptr[i].primaryTitle);
-  }
+  }*/
 
   /*Testing for principals
   for (i=0;i<10;i++) {

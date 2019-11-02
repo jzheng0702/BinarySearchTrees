@@ -11,6 +11,8 @@ struct array_title* get_title (char* path) {
   char *strPtr;
   char * ptr;
   FILE * fp;
+  int index = 0;
+  int count = 0;
 
 
   /*The full-path name*/
@@ -52,8 +54,10 @@ struct array_title* get_title (char* path) {
 
   /*malloc my array*/
   myArray -> structptr = malloc(sizeof(struct title_basics) * myArray -> num_of_items);
-  myArray -> index = 0;
-  myArray -> count = 0;
+  index = 0;
+  count = 0;
+  myArray -> root_one = 0;
+  myArray -> root_two = 0;
 
   fseek(fp,0,SEEK_SET);
   while(!feof(fp)){
@@ -71,8 +75,8 @@ struct array_title* get_title (char* path) {
     if (strstr(strptr,"movie") && strstr(strPtr,"0")) {
       bufferTitle = strdup(get_column(buffer,2));
       bufferConst = strdup(get_column(buffer,0));
-      myArray -> structptr[myArray -> index++].tconst = strdup(bufferConst);
-      myArray -> structptr[myArray -> count++].primaryTitle = strdup(bufferTitle);
+      myArray -> structptr[index++].tconst = strdup(bufferConst);
+      myArray -> structptr[count++].primaryTitle = strdup(bufferTitle);
     }
 
   }

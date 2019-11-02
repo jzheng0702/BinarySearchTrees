@@ -13,6 +13,7 @@ struct array_name* get_name (char* path) {
   char *bufferName;
   char * ptr;
   FILE * fp;
+  int count = 0, index = 0;
 
 
   /*The full-path name*/
@@ -52,8 +53,8 @@ struct array_name* get_name (char* path) {
 
   /*malloc my array*/
   myArray -> structptr = malloc(sizeof(struct name_basics) * myArray -> num_of_items);
-  myArray -> index = 0;
-  myArray -> count = 0;
+  myArray -> root_one = 0;
+  myArray -> root_two = 0;
   fseek(fp,0,SEEK_SET);
   while(!feof(fp)){
     if (fgets(buffer,MAX_LENGTH,fp) == NULL){
@@ -70,8 +71,8 @@ struct array_name* get_name (char* path) {
       bufferName = get_column(buffer,4);
       bufferConst = get_column(buffer,0);
       /*printf("[%s]-[%s]\n",bufferConst,bufferName);*/
-      myArray -> structptr[myArray -> index++].nconst = strdup(bufferConst);
-      myArray -> structptr[myArray -> count++].primaryName = strdup(bufferName);
+      myArray -> structptr[index++].nconst = strdup(bufferConst);
+      myArray -> structptr[count++].primaryName = strdup(bufferName);
     }
   }
 

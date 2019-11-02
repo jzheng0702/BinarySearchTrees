@@ -12,8 +12,7 @@ struct array_principals* get_principals (char* path){
   char *bufferTConst = NULL;
   char * ptr;
   FILE * fp;
-  int count = 0,index = 0,anotherIndex = 0;
-  int numOfLines = 0;
+  int count = 0,index = 0,index2 = 0;
 
 
   /*The full-path name*/
@@ -53,9 +52,9 @@ struct array_principals* get_principals (char* path){
 
   /*malloc my array*/
   myArray -> structptr = malloc(sizeof(struct title_principals) * myArray -> num_of_items);
-  myArray -> index = 0;
-  myArray -> count = 0;
-  myArray -> index2 = 0;
+  myArray -> root_one = 0;
+  myArray -> root_two = 0;
+  myArray -> root_three = 0;
   fseek(fp,0,SEEK_SET);
   while(!feof(fp)){
     if (fgets(buffer,MAX_LENGTH,fp) == NULL){
@@ -72,9 +71,9 @@ struct array_principals* get_principals (char* path){
       bufferChar = strdup(get_column(buffer,5));
       bufferConst = strdup(get_column(buffer,2));
       bufferTConst = strdup(get_column(buffer,0));
-      myArray -> structptr[myArray -> index++].nconst = strdup(bufferConst);
-      myArray -> structptr[myArray -> index2++].tconst = strdup(bufferTConst);
-      myArray -> structptr[myArray -> count++].characters = strdup(bufferChar);
+      myArray -> structptr[index++].nconst = strdup(bufferConst);
+      myArray -> structptr[index2++].tconst = strdup(bufferTConst);
+      myArray -> structptr[count++].characters = strdup(bufferChar);
     }
 
   }

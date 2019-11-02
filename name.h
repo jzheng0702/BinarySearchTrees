@@ -12,8 +12,8 @@ struct name_basics {
 struct array_name {
   int num_of_items;
   struct name_basics* structptr;
-  int index;
-  int count;
+  struct tree* root_one;
+  struct tree* root_two;
 };
 
 struct array_name* get_name (char* path);
