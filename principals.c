@@ -1,10 +1,9 @@
-#include "common.h"
 #include "principals.h"
 
 
-struct title_principals* get_principals (char* path){
+struct array_principals* get_principals (char* path){
   /*Declating my variables*/
-  struct title_principals * structptr;
+  struct array_principals * myArray = malloc(sizeof(struct array_principals));
   static char myPath[100];
   char *strptr = NULL;
   char buffer[MAX_LENGTH];
@@ -28,6 +27,7 @@ struct title_principals* get_principals (char* path){
     fprintf(stderr,"File doesn't exist\n");
   }
 
+  myArray -> num_of_items = 0;
   /*Then, inside a while loop, I will fgets into a buffer
   string of length 256.  I will check the return value of
   the fgets function and print an error message if something goes wrong.*/
@@ -43,16 +43,19 @@ struct title_principals* get_principals (char* path){
 
     strptr = get_column(buffer,3);
     if (strstr(strptr,"actor") || strstr(strptr,"actress")) {
-      numOfLines++;
+      myArray -> num_of_items++;
     }
     free(strptr);
 
   }
-  printf("lines = %d\n",numOfLines);/*Printing out the buffer*/
+  printf("lines = %d\n",myArray -> num_of_items);/*Printing out the buffer*/
 
 
   /*malloc my array*/
-  structptr = malloc(sizeof(struct title_principals) * numOfLines);
+  myArray -> structptr = malloc(sizeof(struct title_principals) * myArray -> num_of_items);
+  myArray -> index = 0;
+  myArray -> count = 0;
+  myArray -> index2 = 0;
   fseek(fp,0,SEEK_SET);
   while(!feof(fp)){
     if (fgets(buffer,MAX_LENGTH,fp) == NULL){
@@ -69,14 +72,14 @@ struct title_principals* get_principals (char* path){
       bufferChar = strdup(get_column(buffer,5));
       bufferConst = strdup(get_column(buffer,2));
       bufferTConst = strdup(get_column(buffer,0));
-      structptr[index++].nconst = strdup(bufferConst);
-      structptr[anotherIndex++].tconst = strdup(bufferTConst);
-      structptr[count++].characters = strdup(bufferChar);
+      myArray -> structptr[myArray -> index++].nconst = strdup(bufferConst);
+      myArray -> structptr[myArray -> index2++].tconst = strdup(bufferTConst);
+      myArray -> structptr[myArray -> count++].characters = strdup(bufferChar);
     }
 
   }
 
 
   fclose(fp);
-  return structptr;
+  return myArray;
 }

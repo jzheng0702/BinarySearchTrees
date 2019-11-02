@@ -1,9 +1,7 @@
 #ifndef NAME_H
 #define NAME_H
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include "common.h"
 
 
 struct name_basics {
@@ -11,7 +9,14 @@ struct name_basics {
   char *primaryName;
 };
 
-struct name_basics* get_name (char* path);
+struct array_name {
+  int num_of_items;
+  struct name_basics* structptr;
+  int index;
+  int count;
+};
+
+struct array_name* get_name (char* path);
 
 
 

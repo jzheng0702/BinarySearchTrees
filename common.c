@@ -1,5 +1,18 @@
 #include "common.h"
 
+/*char * strdup (char* s){
+  char * c;
+
+  c = malloc(strlen(s) + 1);
+  if (c == NULL) {
+    return NULL;
+  }
+  memcpy (c, s, strlen(s) + 1);
+
+
+  return c;
+}*/
+
 /*Helper function: This function will take three arguments,
 a string that contains an entire line from the file,
 another string where the column contents will be copied, and a column number. */
