@@ -31,7 +31,6 @@ int main(int argc, char * argv[]) {
     i++;
   }
   command[i + 1] = '\0';
-  printf("> %s\n",command);
 
   count = 3;
   while (count != argc) {
@@ -52,8 +51,6 @@ int main(int argc, char * argv[]) {
   while(*key == ' ') {
     key++;
   }
-
-  printf("> %s\n",key);
 
   if(strcmp(command,"name") == 0) {
     /*Set up*/
