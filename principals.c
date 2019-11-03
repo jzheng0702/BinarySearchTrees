@@ -98,15 +98,17 @@ void build_nindex_tp(struct array_principals* myptr) {
 struct title_principals* find_nconst_tp(struct array_principals* myptr,char* sentence,struct array_title* title_basics){
   struct tree* root;
   struct title_principals* answer;
-  
-  root = find_nconst_md(myptr->nindex,sentence,title_basics);
-  answer = root -> value;
+
+  find_nconst_md(myptr->nindex,sentence,title_basics);/*Call the function*/
 
 
-  return answer;
+  return NULL;
 }
 
 struct tree* find_nconst_md(struct tree* root,char* sentence,struct array_title* title_basics){
+  /*This function will go through the tree and print out all the match result*/
+  struct title_basics* temp;
+  struct title_principals* answer;
   if (root) {
     if (compare(sentence,root->key) != 0){
 			if (compare(sentence,root->key) < 0){
@@ -121,7 +123,12 @@ struct tree* find_nconst_md(struct tree* root,char* sentence,struct array_title*
         return find_nconst_md(root->children[1], sentence,title_basics);
       } else {
         /*find*/
-        return root;
+        answer = root -> value;
+        temp = find_tconst(title_basics,((struct title_principals*)root->value)->tconst);
+        /*Print out all the info connect to the tconst*/
+        printf("%s: ",temp -> primaryTitle);
+        printf("%s" ,answer -> characters);
+        return find_nconst_md(root->children[1], sentence,title_basics);
       }
     }
 

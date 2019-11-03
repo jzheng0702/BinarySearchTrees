@@ -12,11 +12,10 @@ struct tree {
 };
 
 
-void printTree(struct tree* root);
-/*void freeTree(struct tree *root);*/
 void add_node(struct tree **root, char* my_key, void* structptr);
 int compare(const void* s1, const void* s2);
 struct tree *find_node( struct tree *root, char* sentence);
+void freeTree(struct tree* root);
 
 
 

@@ -9,50 +9,22 @@ int main(int argc, char * argv[]) {
   struct name_basics* name;
   struct title_principals* principals;
   int count;
+  char test[10];
   char *key;
   int i;
-  char temp[MAX_LENGTH];
+  char input[MAX_LENGTH];
   char commands[MAX_LENGTH];
   char* command;
 
-  if (argc < 4) {
+  if (argc < 2) {
     fprintf(stderr, "Usage:  %s directory\n", argv[0] );
     exit(-1);
   }
 
-  strcat(commands,argv[2]);
-  command = commands;
+  scanf("%s",input);
+  printf("%s\n", input);
 
-  while((*command) == ' ') {
-    command++;
-  }
-  i = 0;
-  while(isalpha(command[i]) != 0) {
-    i++;
-  }
-  command[i + 1] = '\0';
-
-  count = 3;
-  while (count != argc) {
-    strcat(temp," ");
-    strcat(temp,argv[count]);
-    count++;
-  }
-
-  key = temp;
-  while(*key == ' ') {
-    key++;
-  }
-
-  while(*key != ' ') {
-    key++;
-  }
-
-  while(*key == ' ') {
-    key++;
-  }
-
-  if(strcmp(command,"name") == 0) {
+  if(strcmp(input,"name") == 0) {
     /*Set up*/
     title_basics = get_title( argv[1] );
     build_ptindex(title_basics);
@@ -67,30 +39,16 @@ int main(int argc, char * argv[]) {
     build_nindex_tp( title_principals );
 
 
-    if(find_primary_name(name_basics,key) == NULL) {
-      printf("%s: nothing founded!\n",key);
+    printf("> %s %s\n",input,"Harrison Ford");
+
+    if(find_primary_name(name_basics,"Harrison Ford") == NULL) {
+      printf("%s: nothing founded!\n","Harrison Ford");
       exit(-1);
     } else {
-      name = find_primary_name(name_basics,key);
+      name = find_primary_name(name_basics,"Harrison Ford");
     }
 
-    if(find_nconst_tp(title_principals,name->nconst,title_basics) == NULL) {
-      printf("%s: nothing founded!\n",name->nconst);
-      exit(-1);
-    } else {
-      principals = find_nconst_tp(title_principals,name->nconst,title_basics);
-    }
-
-    if(find_tconst(title_basics,principals->tconst) == NULL) {
-      printf("%s: nothing founded!\n",principals->tconst);
-      exit(-1);
-    } else {
-      title = find_tconst(title_basics,principals->tconst);
-    }
-
-    printf("> %s %s\n",command,key);
-    printf("%s: ",title->primaryTitle);
-    printf("%s\n",principals ->characters);
+    find_nconst_tp(title_principals,name->nconst,title_basics);
 
   } else if (strcmp(command,"title") == 0) {
     title_basics = get_title( argv[1] );
@@ -130,7 +88,6 @@ int main(int argc, char * argv[]) {
     printf("%s: ",name->primaryName);
     printf("%s\n",principals ->characters);
   }
-
 
   return(0);
 }

@@ -1,6 +1,6 @@
 #include "common.h"
 
-char * strdup (char* s){
+/*char * strdup (char* s){
   char * c;
 
   c = malloc(strlen(s) + 1);
@@ -12,7 +12,7 @@ char * strdup (char* s){
 
 
   return c;
-}
+}*/
 
 /*Helper function: This function will take three arguments,
 a string that contains an entire line from the file,
@@ -78,6 +78,7 @@ char* get_column(char* line, int columnNum) {
 }
 
 char* reverseString(char* myString) {
+  /*reverse my string tso that I don't end up with a long linked list*/
   char temp[MAX_LENGTH] = "";
   int i = 0,j = strlen(myString) - 1;
   while(myString[i] != '\0') {
@@ -89,6 +90,4 @@ char* reverseString(char* myString) {
 
   myString = temp;
   return myString;
-  /*printf("temp: %s\n",temp );*/
-  /*printf("String: %s\n",myString );*/
 }
