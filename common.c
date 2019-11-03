@@ -20,11 +20,13 @@ char * strdup (char* s){
 FILE* openFile (char* path) {
   FILE* fp;
 
-  if(fopen(ptr,"r")) {
+  if(fopen(path,"r")) {
     return NULL;
   } else {
-    fp = fopen(ptr,"r");
+    fp = fopen(path,"r");
   }
+
+  return fp;
 }
 
 /*Helper function: This function will take three arguments,
