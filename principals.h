@@ -11,12 +11,15 @@ struct title_principals {
 struct array_principals {
   int num_of_items;
   struct title_principals* structptr;
-  struct tree* root_one;
-  struct tree* root_two;
-  struct tree* root_three;
+  struct tree* nindex;
+  struct tree* tindex;
 };
 
 struct array_principals* get_principals (char* path);
+void build_tindex_tp(struct array_principals* myptr);
+void build_nindex_tp(struct array_principals* myptr);
+struct title_principals* find_nconst_tp(struct array_principals* myptr,char* sentence);
+struct title_principals* find_tconst_tp(struct array_principals* myptr,char* sentence);
 
 
 

@@ -15,8 +15,10 @@ struct array_name {
 };
 
 struct array_name* get_name (char* path);
-void build_nindex(struct array_name* myptr);
+void build_pnindex(struct array_name* myptr);
 struct name_basics* find_primary_name(struct array_name* myptr,char* sentence);
+void build_nindex(struct array_name* myptr);
+struct name_basics* find_nconst(struct array_name* myptr,char* sentence);
 
 
 

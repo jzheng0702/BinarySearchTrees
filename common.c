@@ -76,3 +76,19 @@ char* get_column(char* line, int columnNum) {
 
   return columnContents;
 }
+
+char* reverseString(char* myString) {
+  char temp[MAX_LENGTH] = "";
+  int i = 0,j = strlen(myString) - 1;
+  while(myString[i] != '\0') {
+    temp[i] = myString[j];
+    i++;
+    j--;
+
+  }
+
+  myString = temp;
+  return myString;
+  /*printf("temp: %s\n",temp );*/
+  /*printf("String: %s\n",myString );*/
+}

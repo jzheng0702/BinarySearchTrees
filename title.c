@@ -76,6 +76,8 @@ struct array_title* get_title (char* path) {
     if (strstr(strptr,"movie") && strstr(strPtr,"0")) {
       bufferTitle = strdup(get_column(buffer,2));
       bufferConst = strdup(get_column(buffer,0));
+      bufferConst = reverseString(bufferConst);
+      /*printf("%s\n",bufferConst);*/
       myArray -> structptr[index++].tconst = strdup(bufferConst);
       myArray -> structptr[count++].primaryTitle = strdup(bufferTitle);
     }
@@ -89,7 +91,8 @@ struct array_title* get_title (char* path) {
 
 }
 
-void build_tindex(struct array_title* myptr) {
+/*build a tree based on primaryTitle*/
+void build_ptindex(struct array_title* myptr) {
   int i;
 
   /* It will loop over all the elements in the array*/
@@ -105,6 +108,30 @@ struct title_basics* find_primary_title(struct array_title* myptr,char* sentence
     return NULL;
   } else {
     root = find_node(myptr->tindex,sentence);
+    answer = root -> value;
+  }
+
+
+  return answer;
+}
+
+/*Build a tree based on tconst*/
+void build_tindex(struct array_title* myptr) {
+  int i;
+
+  /* It will loop over all the elements in the array*/
+  for (i = 0; i < myptr -> num_of_items; i++) {
+    add_node(&myptr -> const_index,myptr -> structptr[i].tconst,&myptr -> structptr[i]);
+  }
+}
+
+struct title_basics* find_tconst(struct array_title* myptr,char* sentence){
+  struct tree* root;
+  struct title_basics* answer;
+  if (find_node(myptr->const_index,sentence) == NULL) {
+    return NULL;
+  } else {
+    root = find_node(myptr->const_index,sentence);
     answer = root -> value;
   }
 

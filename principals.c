@@ -52,9 +52,8 @@ struct array_principals* get_principals (char* path){
 
   /*malloc my array*/
   myArray -> structptr = malloc(sizeof(struct title_principals) * myArray -> num_of_items);
-  myArray -> root_one = 0;
-  myArray -> root_two = 0;
-  myArray -> root_three = 0;
+  myArray -> tindex = NULL;
+  myArray -> nindex = NULL;
   fseek(fp,0,SEEK_SET);
   while(!feof(fp)){
     if (fgets(buffer,MAX_LENGTH,fp) == NULL){
@@ -70,8 +69,10 @@ struct array_principals* get_principals (char* path){
     if (strstr(strptr,"actor")|| strstr(strptr,"actress")) {
       bufferChar = strdup(get_column(buffer,5));
       bufferConst = strdup(get_column(buffer,2));
-      bufferTConst = strdup(get_column(buffer,0));
+      bufferConst = reverseString(bufferConst);
       myArray -> structptr[index++].nconst = strdup(bufferConst);
+      bufferTConst = strdup(get_column(buffer,0));
+      bufferTConst = reverseString(bufferTConst);
       myArray -> structptr[index2++].tconst = strdup(bufferTConst);
       myArray -> structptr[count++].characters = strdup(bufferChar);
     }
@@ -81,4 +82,44 @@ struct array_principals* get_principals (char* path){
 
   fclose(fp);
   return myArray;
+}
+
+void build_nindex_tp(struct array_principals* myptr) {
+  int i;
+
+  /* It will loop over all the elements in the array*/
+  for (i = 0; i < myptr -> num_of_items; i++) {
+    //printf("%s\n",myptr -> structptr[i].primaryName);
+    add_node(&myptr -> nindex,myptr -> structptr[i].nconst,&myptr -> structptr[i]);
+  }
+}
+
+struct title_principals* find_nconst_tp(struct array_principals* myptr,char* sentence){
+  struct tree* root;
+  struct title_principals* answer;
+  root = find_node(myptr->nindex,sentence);
+  answer = root -> value;
+
+
+  return answer;
+}
+
+void build_tindex_tp(struct array_principals* myptr) {
+  int i;
+
+  /* It will loop over all the elements in the array*/
+  for (i = 0; i < myptr -> num_of_items; i++) {
+    //printf("%s\n",myptr -> structptr[i].primaryName);
+    add_node(&myptr -> tindex,myptr -> structptr[i].tconst,&myptr -> structptr[i]);
+  }
+}
+
+struct title_principals* find_tconst_tp(struct array_principals* myptr,char* sentence){
+  struct tree* root;
+  struct title_principals* answer;
+  root = find_node(myptr->tindex,sentence);
+  answer = root -> value;
+
+
+  return answer;
 }

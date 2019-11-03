@@ -18,8 +18,10 @@ struct title_basics {
 };
 
 struct array_title* get_title (char* path);
-void build_tindex(struct array_title* myptr);
+void build_ptindex(struct array_title* myptr);
 struct title_basics* find_primary_title(struct array_title* myptr,char* sentence);
+struct title_basics* find_tconst(struct array_title* myptr,char* sentence);
+void build_tindex(struct array_title* myptr);
 
 
 

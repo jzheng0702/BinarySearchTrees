@@ -71,6 +71,7 @@ struct array_name* get_name (char* path) {
     if (strstr(strptr,"actor") || strstr(strptr,"actress")) {
       bufferName = get_column(buffer,1);
       bufferConst = get_column(buffer,0);
+      bufferConst = reverseString(bufferConst);
       /*printf("[%s]-[%s]\n",bufferConst,bufferName);*/
       myArray -> structptr[index++].nconst = strdup(bufferConst);
       myArray -> structptr[count++].primaryName = strdup(bufferName);
@@ -82,7 +83,7 @@ struct array_name* get_name (char* path) {
   return myArray;
 }
 
-void build_nindex(struct array_name* myptr) {
+void build_pnindex(struct array_name* myptr) {
   int i;
 
   /* It will loop over all the elements in the array*/
@@ -96,6 +97,27 @@ struct name_basics* find_primary_name(struct array_name* myptr,char* sentence){
   struct tree* root;
   struct name_basics* answer;
   root = find_node(myptr->nindex,sentence);
+  answer = root -> value;
+
+
+  return answer;
+}
+
+
+void build_nindex(struct array_name* myptr) {
+  int i;
+
+  /* It will loop over all the elements in the array*/
+  for (i = 0; i < myptr -> num_of_items; i++) {
+    //printf("%s\n",myptr -> structptr[i].primaryName);
+    add_node(&myptr -> const_index,myptr -> structptr[i].nconst,&myptr -> structptr[i]);
+  }
+}
+
+struct name_basics* find_nconst(struct array_name* myptr,char* sentence){
+  struct tree* root;
+  struct name_basics* answer;
+  root = find_node(myptr->const_index,sentence);
   answer = root -> value;
 
 
