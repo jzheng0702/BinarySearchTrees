@@ -41,7 +41,15 @@ int main(int argc, char * argv[]) {
   }
 
   key = temp;
-  while(isalpha(*key) == 0) {
+  while(*key == ' ') {
+    key++;
+  }
+
+  while(*key != ' ') {
+    key++;
+  }
+
+  while(*key == ' ') {
     key++;
   }
 
