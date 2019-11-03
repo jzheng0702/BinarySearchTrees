@@ -11,9 +11,6 @@ char * strdup (char* s){
     return NULL;
   }
   memcpy (c, s, strlen(s) + 1);
-
-
-
   return c;
 }
 
