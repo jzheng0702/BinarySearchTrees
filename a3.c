@@ -30,6 +30,8 @@ int main(int argc, char * argv[]) {
     key++;
   }
 
+  printf("> %s %s\n",commands,key);
+
   if(strcmp(commands,"name") == 0) {
     /*Set up*/
     title_basics = get_title( argv[1] );
