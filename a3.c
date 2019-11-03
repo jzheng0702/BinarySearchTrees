@@ -47,10 +47,8 @@ int main(int argc, char * argv[]) {
   while(*key == ' ') {
     key++;
   }
-  printf("%s\n",key );
 
   if(strncmp(strptr,"name",4) == 0){
-    printf("name\n");
     /*Set up*/
     title_basics = get_title( argv[1] );
     build_ptindex(title_basics);
@@ -75,7 +73,6 @@ int main(int argc, char * argv[]) {
   }
 
   if(strncmp(strptr,"title",5) == 0){
-    printf("title\n");
     title_basics = get_title( argv[1] );
     build_ptindex(title_basics);
     build_tindex(title_basics);
