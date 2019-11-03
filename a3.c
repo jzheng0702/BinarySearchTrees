@@ -1,4 +1,5 @@
 #include "common.h"
+#include <ctype.h>
 
 int main(int argc, char * argv[]) {
   struct array_name * name_basics;
@@ -9,8 +10,10 @@ int main(int argc, char * argv[]) {
   struct title_principals* principals;
   int count;
   char *key;
+  int i;
   char temp[MAX_LENGTH];
   char commands[MAX_LENGTH];
+  char* command;
 
   if (argc < 4) {
     fprintf(stderr, "Usage:  %s directory\n", argv[0] );
@@ -18,6 +21,17 @@ int main(int argc, char * argv[]) {
   }
 
   strcat(commands,argv[2]);
+  command = commands;
+
+  while((*command) == ' ') {
+    command++;
+  }
+  i = 0;
+  while(isalpha(command[i]) != 0) {
+    i++;
+  }
+  command[i + 1] = '\0';
+
   count = 3;
   while (count != argc) {
     strcat(temp," ");
