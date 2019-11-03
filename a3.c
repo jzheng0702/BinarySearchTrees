@@ -10,7 +10,6 @@ int main(int argc, char * argv[]) {
   struct array_principals * title_principals;
   struct title_basics* title;
   struct name_basics* name;
-  struct title_principals* principals;
   char input[1024];
   char* strptr;
   char * key;
