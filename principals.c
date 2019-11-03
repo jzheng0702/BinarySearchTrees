@@ -89,7 +89,6 @@ void build_nindex_tp(struct array_principals* myptr) {
 
   /* It will loop over all the elements in the array*/
   for (i = 0; i < myptr -> num_of_items; i++) {
-    //printf("%s\n",myptr -> structptr[i].primaryName);
     add_node(&myptr -> nindex,myptr -> structptr[i].nconst,&myptr -> structptr[i]);
   }
 }
@@ -109,7 +108,6 @@ void build_tindex_tp(struct array_principals* myptr) {
 
   /* It will loop over all the elements in the array*/
   for (i = 0; i < myptr -> num_of_items; i++) {
-    //printf("%s\n",myptr -> structptr[i].primaryName);
     add_node(&myptr -> tindex,myptr -> structptr[i].tconst,&myptr -> structptr[i]);
   }
 }
