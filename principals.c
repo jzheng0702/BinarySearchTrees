@@ -96,8 +96,6 @@ void build_nindex_tp(struct array_principals* myptr) {
 }
 
 struct title_principals* find_nconst_tp(struct array_principals* myptr,char* sentence,struct array_title* title_basics){
-  struct tree* root;
-  struct title_principals* answer;
 
   find_nconst_md(myptr->nindex,sentence,title_basics);/*Call the function*/
 
