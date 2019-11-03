@@ -1,3 +1,6 @@
+/*Jingjing Zheng
+ID: 1043704
+email:jzheng06@uoguelph.ca*/
 #ifndef PRINCIPALS_H
 #define PRINCIPALS_H
 

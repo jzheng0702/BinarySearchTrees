@@ -1,3 +1,6 @@
+/*Jingjing Zheng
+ID: 1043704
+email:jzheng06@uoguelph.ca*/
 #ifndef BINARY_H
 #define BINARY_H
 

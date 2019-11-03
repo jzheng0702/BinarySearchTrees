@@ -1,3 +1,6 @@
+/*Jingjing Zheng
+ID: 1043704
+email:jzheng06@uoguelph.ca*/
 #ifndef NAME_H
 #define NAME_H
 
