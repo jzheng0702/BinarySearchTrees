@@ -8,6 +8,7 @@ int main() {
   char input[100];
   char before[100];
   char* strptr;
+  char * key;
   int i;
 
   fgets(input, 100, stdin);
@@ -25,16 +26,37 @@ int main() {
     }
   }
   strptr[i + 1] = '\0';
+
+  key = strptr;
+  /*escape the first word*/
+  while(*key != ' ') {
+    key++;
+  }
+
+  /*escape the spaces after the first word*/
+  while(*key == ' ') {
+    key++;
+  }
+  printf("%s\n",key );
+
+  if(strncmp(strptr,"name",4) == 0){
+    printf("yes\n");
+  }
+  if(strncmp(strptr,"title",5) == 0){
+    printf("title\n");
+  }
+
+
   printf("input\n");
   for ( i = 0; i < strlen(before);i++) {
     printf("%d: %c\n",(i+1),before[i]);
   }
 
   printf("after\n");
-  for ( i = 0; i < strlen(strptr);i++) {
-    printf("%d: %c\n",(i+1),strptr[i]);
+  for ( i = 0; i < strlen(key);i++) {
+    printf("%d: %c\n",(i+1),key[i]);
   }
-  printf("%s\n",strptr);
+  printf("%s\n",key);
 
 
 
