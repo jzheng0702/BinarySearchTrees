@@ -50,7 +50,7 @@ struct array_title* get_title (char* path) {
     free(strPtr);
 
   }
-  printf("lines = %d\n",myArray -> num_of_items);/*Printing out the buffer*/
+  /*printf("lines = %d\n",myArray -> num_of_items);Printing out the buffer*/
 
 
   /*malloc my array*/

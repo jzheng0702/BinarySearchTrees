@@ -1,4 +1,6 @@
 #include "common.h"
+#include "principals.h"
+#include "title.h"
 
 
 struct array_principals* get_principals (char* path){
@@ -47,7 +49,7 @@ struct array_principals* get_principals (char* path){
     free(strptr);
 
   }
-  printf("lines = %d\n",myArray -> num_of_items);/*Printing out the buffer*/
+  /*printf("lines = %d\n",myArray -> num_of_items);Printing out the buffer*/
 
 
   /*malloc my array*/
@@ -93,15 +95,40 @@ void build_nindex_tp(struct array_principals* myptr) {
   }
 }
 
-struct title_principals* find_nconst_tp(struct array_principals* myptr,char* sentence){
+struct title_principals* find_nconst_tp(struct array_principals* myptr,char* sentence,struct array_title* title_basics){
   struct tree* root;
   struct title_principals* answer;
-  root = find_node(myptr->nindex,sentence);
+  
+  root = find_nconst_md(myptr->nindex,sentence,title_basics);
   answer = root -> value;
 
 
   return answer;
 }
+
+struct tree* find_nconst_md(struct tree* root,char* sentence,struct array_title* title_basics){
+  if (root) {
+    if (compare(sentence,root->key) != 0){
+			if (compare(sentence,root->key) < 0){
+        return find_nconst_md(root->children[0], sentence,title_basics);
+      }
+      else {
+        return find_nconst_md(root->children[1], sentence,title_basics);
+      }
+    }
+    else{
+      if (find_tconst(title_basics,((struct title_principals*)root->value)->tconst) == NULL) {
+        return find_nconst_md(root->children[1], sentence,title_basics);
+      } else {
+        /*find*/
+        return root;
+      }
+    }
+
+  }
+  return NULL;
+}
+
 
 void build_tindex_tp(struct array_principals* myptr) {
   int i;
@@ -115,8 +142,12 @@ void build_tindex_tp(struct array_principals* myptr) {
 struct title_principals* find_tconst_tp(struct array_principals* myptr,char* sentence){
   struct tree* root;
   struct title_principals* answer;
-  root = find_node(myptr->tindex,sentence);
-  answer = root -> value;
+  if (find_node(myptr->tindex,sentence) == NULL) {
+    return NULL;
+  } else {
+    root = find_node(myptr->tindex,sentence);
+    answer = root -> value;
+  }
 
 
   return answer;

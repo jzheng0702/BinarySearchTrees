@@ -49,7 +49,7 @@ struct array_name* get_name (char* path) {
     }
 
   }
-  printf("lines = %d\n",myArray -> num_of_items);/*Printing out the buffer*/
+  /*printf("lines = %d\n",myArray -> num_of_items);Printing out the buffer*/
 
 
   /*malloc my array*/
@@ -95,8 +95,12 @@ void build_pnindex(struct array_name* myptr) {
 struct name_basics* find_primary_name(struct array_name* myptr,char* sentence){
   struct tree* root;
   struct name_basics* answer;
-  root = find_node(myptr->nindex,sentence);
-  answer = root -> value;
+  if (find_node(myptr->nindex,sentence) == NULL) {
+    return NULL;
+  } else {
+    root = find_node(myptr->nindex,sentence);
+    answer = root -> value;
+  }
 
 
   return answer;
@@ -115,8 +119,12 @@ void build_nindex(struct array_name* myptr) {
 struct name_basics* find_nconst(struct array_name* myptr,char* sentence){
   struct tree* root;
   struct name_basics* answer;
-  root = find_node(myptr->const_index,sentence);
-  answer = root -> value;
+  if (find_node(myptr->const_index,sentence) == NULL) {
+    return NULL;
+  } else {
+    root = find_node(myptr->const_index,sentence);
+    answer = root -> value;
+  }
 
 
   return answer;

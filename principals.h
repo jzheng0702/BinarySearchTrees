@@ -18,8 +18,9 @@ struct array_principals {
 struct array_principals* get_principals (char* path);
 void build_tindex_tp(struct array_principals* myptr);
 void build_nindex_tp(struct array_principals* myptr);
-struct title_principals* find_nconst_tp(struct array_principals* myptr,char* sentence);
+struct title_principals* find_nconst_tp(struct array_principals* myptr,char* sentence,struct array_title* title_basics);
 struct title_principals* find_tconst_tp(struct array_principals* myptr,char* sentence);
+struct tree* find_nconst_md(struct tree* root,char* sentence,struct array_title* title_basics);
 
 
 
