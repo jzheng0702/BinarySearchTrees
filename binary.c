@@ -37,7 +37,6 @@ struct tree *find_node( struct tree *root, char* sentence) {
 
   return NULL;*/
   if (root) {
-		//printf("%s\n",root->key );
     if (compare(sentence,root->key) != 0){
 			if (compare(sentence,root->key) < 0){
         return find_node(root->children[0], sentence);

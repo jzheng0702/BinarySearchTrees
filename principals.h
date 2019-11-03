@@ -1,6 +1,8 @@
 #ifndef PRINCIPALS_H
 #define PRINCIPALS_H
 
+#include "title.h"
+
 
 struct title_principals {
   char *tconst;
