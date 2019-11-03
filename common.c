@@ -1,6 +1,6 @@
 #include "common.h"
 
-/*char * strdup (char* s){
+char * strdup (char* s){
   char * c;
 
   c = malloc(strlen(s) + 1);
@@ -12,7 +12,7 @@
 
 
   return c;
-}*/
+}
 
 /*Helper function: This function will take three arguments,
 a string that contains an entire line from the file,

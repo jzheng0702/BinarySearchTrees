@@ -18,7 +18,7 @@
 
 char* get_column(char* line, int columnNum);
 char* reverseString(char* myString);
-//char* strdup(char* s);
+char* strdup(char* s);
 
 
 
