@@ -23,4 +23,4 @@ common.o: common.c
 	$(CC) $(CFLAGS) -c common.c -o common.o
 
 clean:
-	rm a3 a3.o principals.o title.o name.o binary.o common.o
+	rm a3 main.o principals.o title.o name.o binary.o common.o
