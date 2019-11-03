@@ -20,7 +20,7 @@ char * strdup (char* s){
 FILE* openFile (char* path) {
   FILE* fp;
 
-  if(fopen(path,"r")) {
+  if(fopen(path,"r") == NULL) {
     return NULL;
   } else {
     fp = fopen(path,"r");
