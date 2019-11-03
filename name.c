@@ -88,7 +88,6 @@ void build_pnindex(struct array_name* myptr) {
 
   /* It will loop over all the elements in the array*/
   for (i = 0; i < myptr -> num_of_items; i++) {
-    //printf("%s\n",myptr -> structptr[i].primaryName);
     add_node(&myptr -> nindex,myptr -> structptr[i].primaryName,&myptr -> structptr[i]);
   }
 }
@@ -109,7 +108,6 @@ void build_nindex(struct array_name* myptr) {
 
   /* It will loop over all the elements in the array*/
   for (i = 0; i < myptr -> num_of_items; i++) {
-    //printf("%s\n",myptr -> structptr[i].primaryName);
     add_node(&myptr -> const_index,myptr -> structptr[i].nconst,&myptr -> structptr[i]);
   }
 }
