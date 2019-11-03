@@ -11,7 +11,7 @@ int main(int argc, char * argv[]) {
     fprintf(stderr, "Usage:  %s directory\n", argv[0] );
     exit(-1);
   }
-  
+
   title_basics = get_title( argv[1] );
   build_ptindex(title_basics);
   build_tindex(title_basics);
@@ -34,4 +34,6 @@ int main(int argc, char * argv[]) {
   principals = find_nconst_tp( title_principals, name->nconst );
   title = find_tconst( title_basics, principals->tconst );
   printf( "%s\n", title->primaryTitle );
+
+  return(0);
 }

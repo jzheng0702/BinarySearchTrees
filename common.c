@@ -35,7 +35,6 @@ char* get_column(char* line, int columnNum) {
   if (columnNum == totalTab) {
     for (i = 0; i < strlen(line); i++) {
       if (line[i] == '\t') {
-        //printf("%d: tab\n",i);
         count++;
         if (count == columnNum) {
           start = i;
