@@ -11,23 +11,46 @@ int main(int argc, char * argv[]) {
   struct title_basics* title;
   struct name_basics* name;
   struct title_principals* principals;
-  int count;
-  char test[10];
-  char *key;
+  char input[1024];
+  char* strptr;
+  char * key;
   int i;
-  char input[MAX_LENGTH];
-  char commands[MAX_LENGTH];
-  char* command;
 
   if (argc < 2) {
     fprintf(stderr, "Usage:  %s directory\n", argv[0] );
     exit(-1);
   }
 
-  scanf("%s",input);
-  printf("%s\n", input);
+  printf("> ");
+  fgets(input,1024,stdin);
 
-  if(strcmp(input,"name") == 0) {
+  strptr = input;
+  while(*strptr == ' ') {
+    strptr++;
+  }
+
+  for (i = strlen(strptr) - 1; i >= 0; i--) {
+    if (isalpha(strptr[i]) == 0) {
+    } else {
+      break;
+    }
+  }
+  strptr[i + 1] = '\0';
+
+  key = strptr;
+  /*escape the first word*/
+  while(*key != ' ') {
+    key++;
+  }
+
+  /*escape the spaces after the first word*/
+  while(*key == ' ') {
+    key++;
+  }
+  printf("%s\n",key );
+
+  if(strncmp(strptr,"name",4) == 0){
+    printf("name\n");
     /*Set up*/
     title_basics = get_title( argv[1] );
     build_ptindex(title_basics);
@@ -41,19 +64,18 @@ int main(int argc, char * argv[]) {
     build_tindex_tp( title_principals );
     build_nindex_tp( title_principals );
 
-
-    printf("> %s %s\n",input,"Harrison Ford");
-
-    if(find_primary_name(name_basics,"Harrison Ford") == NULL) {
-      printf("%s: nothing founded!\n","Harrison Ford");
+    if(find_primary_name(name_basics,key) == NULL) {
+      printf("%s: nothing founded!\n",key);
       exit(-1);
     } else {
-      name = find_primary_name(name_basics,"Harrison Ford");
+      name = find_primary_name(name_basics,key);
     }
 
     find_nconst_tp(title_principals,name->nconst,title_basics);
+  }
 
-  } else if (strcmp(command,"title") == 0) {
+  if(strncmp(strptr,"title",5) == 0){
+    printf("title\n");
     title_basics = get_title( argv[1] );
     build_ptindex(title_basics);
     build_tindex(title_basics);
@@ -87,7 +109,6 @@ int main(int argc, char * argv[]) {
       name = find_nconst(name_basics,principals->nconst);
     }
 
-    printf("> %s %s\n",command,key);
     printf("%s: ",name->primaryName);
     printf("%s\n",principals ->characters);
   }
