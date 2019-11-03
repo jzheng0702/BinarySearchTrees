@@ -1,3 +1,4 @@
+#include "common.h"
 #include "title.h"
 
 struct array_title* get_title (char* path) {
@@ -56,8 +57,8 @@ struct array_title* get_title (char* path) {
   myArray -> structptr = malloc(sizeof(struct title_basics) * myArray -> num_of_items);
   index = 0;
   count = 0;
-  myArray -> root_one = 0;
-  myArray -> root_two = 0;
+  myArray -> const_index = NULL;
+  myArray -> tindex = NULL;
 
   fseek(fp,0,SEEK_SET);
   while(!feof(fp)){
@@ -86,4 +87,27 @@ struct array_title* get_title (char* path) {
   return myArray;
 
 
+}
+
+void build_tindex(struct array_title* myptr) {
+  int i;
+
+  /* It will loop over all the elements in the array*/
+  for (i = 0; i < myptr -> num_of_items; i++) {
+    add_node(&myptr -> tindex,myptr -> structptr[i].primaryTitle,&myptr -> structptr[i]);
+  }
+}
+
+struct title_basics* find_primary_title(struct array_title* myptr,char* sentence){
+  struct tree* root;
+  struct title_basics* answer;
+  if (find_node(myptr->tindex,sentence) == NULL) {
+    return NULL;
+  } else {
+    root = find_node(myptr->tindex,sentence);
+    answer = root -> value;
+  }
+
+
+  return answer;
 }

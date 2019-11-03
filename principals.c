@@ -1,4 +1,4 @@
-#include "principals.h"
+#include "common.h"
 
 
 struct array_principals* get_principals (char* path){

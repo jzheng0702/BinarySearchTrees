@@ -66,8 +66,11 @@ char* get_column(char* line, int columnNum) {
     strncpy(buffer,line+start,end - start);
   }
 
+  if (buffer[end - start - 1] == '\t'){
+    buffer[end - start - 1] = '\0';
+  }
+
   buffer[end - start] = '\0';
-  //printf("My word is %s\n",buffer);
   columnContents = malloc(end - start + 1);
   strcpy(columnContents,buffer);
 

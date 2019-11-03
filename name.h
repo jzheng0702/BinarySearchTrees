@@ -1,8 +1,6 @@
 #ifndef NAME_H
 #define NAME_H
 
-#include "common.h"
-
 
 struct name_basics {
   char *nconst;
@@ -12,11 +10,13 @@ struct name_basics {
 struct array_name {
   int num_of_items;
   struct name_basics* structptr;
-  struct tree* root_one;
-  struct tree* root_two;
+  struct tree* nindex;
+  struct tree* const_index;
 };
 
 struct array_name* get_name (char* path);
+void build_nindex(struct array_name* myptr);
+struct name_basics* find_primary_name(struct array_name* myptr,char* sentence);
 
 
 

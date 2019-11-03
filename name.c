@@ -1,3 +1,4 @@
+#include "common.h"
 #include "name.h"
 
 /*The get_name function will take a string as an argument
@@ -53,8 +54,8 @@ struct array_name* get_name (char* path) {
 
   /*malloc my array*/
   myArray -> structptr = malloc(sizeof(struct name_basics) * myArray -> num_of_items);
-  myArray -> root_one = 0;
-  myArray -> root_two = 0;
+  myArray -> nindex = NULL;
+  myArray -> const_index = NULL;
   fseek(fp,0,SEEK_SET);
   while(!feof(fp)){
     if (fgets(buffer,MAX_LENGTH,fp) == NULL){
@@ -68,7 +69,7 @@ struct array_name* get_name (char* path) {
 
     strptr = get_column(buffer,4);
     if (strstr(strptr,"actor") || strstr(strptr,"actress")) {
-      bufferName = get_column(buffer,4);
+      bufferName = get_column(buffer,1);
       bufferConst = get_column(buffer,0);
       /*printf("[%s]-[%s]\n",bufferConst,bufferName);*/
       myArray -> structptr[index++].nconst = strdup(bufferConst);
@@ -79,4 +80,24 @@ struct array_name* get_name (char* path) {
 
   fclose(fp);
   return myArray;
+}
+
+void build_nindex(struct array_name* myptr) {
+  int i;
+
+  /* It will loop over all the elements in the array*/
+  for (i = 0; i < myptr -> num_of_items; i++) {
+    //printf("%s\n",myptr -> structptr[i].primaryName);
+    add_node(&myptr -> nindex,myptr -> structptr[i].primaryName,&myptr -> structptr[i]);
+  }
+}
+
+struct name_basics* find_primary_name(struct array_name* myptr,char* sentence){
+  struct tree* root;
+  struct name_basics* answer;
+  root = find_node(myptr->nindex,sentence);
+  answer = root -> value;
+
+
+  return answer;
 }

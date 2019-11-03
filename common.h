@@ -5,6 +5,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <strings.h>
+#include "binary.h"
+#include "name.h"
+#include "principals.h"
+#include "title.h"
 
 #define MAX_LENGTH 1024
 
