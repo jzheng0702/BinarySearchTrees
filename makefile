@@ -1,3 +1,7 @@
+#Jingjing Zheng
+#ID: 1043704
+#email:jzheng06@uoguelph.ca
+
 CC=gcc
 CFLAGS=-Wall -ansi -pedantic
 
