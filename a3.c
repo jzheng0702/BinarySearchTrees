@@ -44,9 +44,9 @@ int main(int argc, char * argv[]) {
     key++;
   }
 
-  printf("> %s %s\n",commands,key);
+  printf("> %s %s\n",command,key);
 
-  if(strcmp(commands,"name") == 0) {
+  if(strcmp(command,"name") == 0) {
     /*Set up*/
     title_basics = get_title( argv[1] );
     build_ptindex(title_basics);
@@ -86,7 +86,7 @@ int main(int argc, char * argv[]) {
     printf("%s: ",title->primaryTitle);
     printf("%s\n",principals ->characters);
 
-  } else if (strcmp(commands,"title") == 0) {
+  } else if (strcmp(command,"title") == 0) {
     title_basics = get_title( argv[1] );
     build_ptindex(title_basics);
     build_tindex(title_basics);
