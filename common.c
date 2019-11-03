@@ -17,6 +17,16 @@ char * strdup (char* s){
   return c;
 }
 
+FILE* openFile (char* path) {
+  FILE* fp;
+
+  if(fopen(ptr,"r")) {
+    return NULL;
+  } else {
+    fp = fopen(ptr,"r");
+  }
+}
+
 /*Helper function: This function will take three arguments,
 a string that contains an entire line from the file,
 another string where the column contents will be copied, and a column number. */

@@ -1,11 +1,11 @@
 CC=gcc
 CFLAGS=-Wall -ansi -pedantic
 
-all: a3.o principals.o title.o name.o binary.o common.o
-	$(CC) a3.o principals.o title.o name.o binary.o common.o -o a3
+all: main.o principals.o title.o name.o binary.o common.o
+	$(CC) main.o principals.o title.o name.o binary.o common.o -o a3
 
-a3.o: a3.c *.h
-	$(CC) $(CFLAGS) -c a3.c -o a3.o
+main.o: main.c *.h
+	$(CC) $(CFLAGS) -c main.c -o main.o
 
 binary.o: binary.c common.h
 	$(CC) $(CFLAGS) -c binary.c -o binary.o

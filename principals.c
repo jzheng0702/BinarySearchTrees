@@ -27,7 +27,7 @@ struct array_principals* get_principals (char* path){
   ptr = malloc(strlen(myPath) + 1);/*malloc enough space for my pointer +1 for \0*/
   ptr = myPath;/*point to my string*/
 
-  fp = fopen(ptr,"r");
+  fp = openFile(ptr);
   if (fp == NULL){
     fprintf(stderr,"File doesn't exist\n");
   }

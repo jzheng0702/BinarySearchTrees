@@ -22,6 +22,7 @@ email:jzheng06@uoguelph.ca*/
 char* get_column(char* line, int columnNum);
 char* reverseString(char* myString);
 char* strdup(char* s);
+FILE* openFile (char* path);
 
 
 
