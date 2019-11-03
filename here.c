@@ -6,10 +6,12 @@
 int main() {
   printf("> ");
   char input[100];
+  char before[100];
   char* strptr;
   int i;
 
   fgets(input, 100, stdin);
+  strcpy(before,input);
 
   strptr = input;
   while(*strptr == ' ') {
@@ -24,8 +26,8 @@ int main() {
   }
   strptr[i + 1] = '\0';
   printf("input\n");
-  for ( i = 0; i < strlen(input);i++) {
-    printf("%d: %c\n",(i+1),input[i]);
+  for ( i = 0; i < strlen(before);i++) {
+    printf("%d: %c\n",(i+1),before[i]);
   }
 
   printf("after\n");
