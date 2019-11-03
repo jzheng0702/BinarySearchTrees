@@ -31,6 +31,7 @@ int main(int argc, char * argv[]) {
     i++;
   }
   command[i + 1] = '\0';
+  printf("> %s\n",command);
 
   count = 3;
   while (count != argc) {
@@ -44,7 +45,7 @@ int main(int argc, char * argv[]) {
     key++;
   }
 
-  printf("> %s %s\n",command,key);
+  printf("> %s\n",key);
 
   if(strcmp(command,"name") == 0) {
     /*Set up*/
@@ -82,7 +83,7 @@ int main(int argc, char * argv[]) {
       title = find_tconst(title_basics,principals->tconst);
     }
 
-    printf("> %s %s\n",commands,key);
+    printf("> %s %s\n",command,key);
     printf("%s: ",title->primaryTitle);
     printf("%s\n",principals ->characters);
 
@@ -120,7 +121,7 @@ int main(int argc, char * argv[]) {
       name = find_nconst(name_basics,principals->nconst);
     }
 
-    printf("> %s %s\n",commands,key);
+    printf("> %s %s\n",command,key);
     printf("%s: ",name->primaryName);
     printf("%s\n",principals ->characters);
   }
