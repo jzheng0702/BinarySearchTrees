@@ -4,6 +4,7 @@ email:jzheng06@uoguelph.ca*/
 #include "common.h"
 #include "principals.h"
 #include "title.h"
+#include "name.h"
 
 
 struct array_principals* get_principals (char* path){
@@ -127,7 +128,7 @@ struct tree* find_nconst_md(struct tree* root,char* sentence,struct array_title*
         answer = root -> value;
         temp = find_tconst(title_basics,((struct title_principals*)root->value)->tconst);
         /*Print out all the info connect to the tconst*/
-        printf("%s: ",temp -> primaryTitle);
+        printf("%s : ",temp -> primaryTitle);
         printf("%s" ,answer -> characters);
         return find_nconst_md(root->children[1], sentence,title_basics);
       }
@@ -147,16 +148,41 @@ void build_tindex_tp(struct array_principals* myptr) {
   }
 }
 
-struct title_principals* find_tconst_tp(struct array_principals* myptr,char* sentence){
-  struct tree* root;
+struct title_principals* find_tconst_tp(struct array_principals* myptr,char* sentence,struct array_name* name_basics ){
+
+  find_tconst_md(myptr->tindex,sentence,name_basics);/*Call the function*/
+
+
+  return NULL;
+}
+
+struct tree* find_tconst_md(struct tree* root,char* sentence,struct array_name* name_basics){
+  /*This function will go through the tree and print out all the match result*/
+  struct name_basics* temp;
   struct title_principals* answer;
-  if (find_node(myptr->tindex,sentence) == NULL) {
-    return NULL;
-  } else {
-    root = find_node(myptr->tindex,sentence);
-    answer = root -> value;
+  if (root) {
+    if (compare(sentence,root->key) != 0){
+			if (compare(sentence,root->key) < 0){
+        return find_tconst_md(root->children[0], sentence,name_basics);
+      }
+      else {
+        return find_tconst_md(root->children[1], sentence,name_basics);
+      }
+    }
+    else{
+      if (find_nconst(name_basics,((struct title_principals*)root->value)->nconst) == NULL) {
+        return find_tconst_md(root->children[1], sentence,name_basics);
+      } else {
+        /*find*/
+        answer = root -> value;
+        temp = (find_nconst(name_basics,((struct title_principals*)root->value)->nconst));
+        /*Print out all the info connect to the tconst*/
+        printf("%s : ",temp -> primaryName);
+        printf("%s" ,answer -> characters);
+        return find_tconst_md(root->children[1], sentence,name_basics);
+      }
+    }
+
   }
-
-
-  return answer;
+  return NULL;
 }

@@ -92,22 +92,7 @@ int main(int argc, char * argv[]) {
       title = find_primary_title(title_basics,key);
     }
 
-    if(find_tconst_tp(title_principals,title->tconst) == NULL) {
-      printf("%s: nothing founded!\n",title->tconst);
-      exit(-1);
-    } else {
-      principals = find_tconst_tp(title_principals,title->tconst);
-    }
-
-    if(find_nconst(name_basics,principals->nconst) == NULL) {
-      printf("%s: nothing founded!\n",principals->nconst);
-      exit(-1);
-    } else {
-      name = find_nconst(name_basics,principals->nconst);
-    }
-
-    printf("%s: ",name->primaryName);
-    printf("%s\n",principals ->characters);
+    find_tconst_tp(title_principals,title->tconst,name_basics);
   }
 
   return(0);
