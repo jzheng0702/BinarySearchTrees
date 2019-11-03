@@ -12,7 +12,7 @@ int main(int argc, char * argv[]) {
   char temp[MAX_LENGTH];
   char commands[MAX_LENGTH];
 
-  if (argc < 2) {
+  if (argc < 4) {
     fprintf(stderr, "Usage:  %s directory\n", argv[0] );
     exit(-1);
   }
